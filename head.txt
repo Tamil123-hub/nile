@@ -2,3 +2,112 @@ Vanakkam maple
 nasam nasam kola nasam
 
 Koondoda kailaasam
+
+Got it — if Git **still isn’t picking up** your username and email even after setting them, let’s fix this step-by-step carefully (this happens sometimes on Windows).
+
+---
+
+## 🧭 Step-by-Step Fix for “Git not getting my username and email”
+
+### ✅ Step 1: Check where Git is looking for config files
+
+Run these commands:
+
+```bash
+git config --show-origin --list
+```
+
+This shows **which file** each setting comes from — global, local, or system.
+Look for something like this:
+
+```
+file:C:/Users/Tamilarasu/.gitconfig
+file:C:/path/to/your/repo/.git/config
+```
+
+If `user.name` and `user.email` don’t appear in either, we’ll fix that next.
+
+---
+
+### ✅ Step 2: Manually add your name & email to the global config file
+
+1. Open this file in Notepad:
+
+   ```
+   C:\Users\Tamilarasu\.gitconfig
+   ```
+
+2. If the file doesn’t exist, create it.
+
+3. Add these lines:
+
+   ```ini
+   [user]
+       name = Tamilarasu
+       email = tamilarasu@gmail.com
+   ```
+
+4. Save the file and close Notepad.
+
+---
+
+### ✅ Step 3: Verify that Git reads your info
+
+Run:
+
+```bash
+git config --global user.name
+git config --global user.email
+```
+
+If both show your name and email correctly, great — move on.
+
+---
+
+### ✅ Step 4: If still not working, try setting *locally* in the repo
+
+Go inside your repository folder and run:
+
+```bash
+git config user.name "Tamilarasu"
+git config user.email "tamilarasu@gmail.com"
+```
+
+Then confirm:
+
+```bash
+git config user.name
+git config user.email
+```
+
+They should print correctly.
+
+---
+
+### ✅ Step 5: Try committing again
+
+```bash
+git commit -m "Inserting a new file"
+```
+
+You should no longer see “Author identity unknown”.
+
+---
+
+### ⚠️ Optional check — permission or path issues
+
+If you still have trouble:
+
+* Make sure Git is installed in your system PATH (`git --version` should work).
+* Run Git Bash **as Administrator** once and re-run the commands above.
+* Check that your Windows username doesn’t contain special characters that break Git paths.
+
+---
+
+Can you please run this and share the output?
+
+```bash
+git config --show-origin --list
+```
+
+That will tell me *exactly* which config file Git is using, so I can pinpoint the issue precisely.
